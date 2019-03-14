@@ -5,5 +5,9 @@ estado="activo"
 while(estado="activo")
   print("1 para subir")
   print("2 para escribir")
-  list=input("Ingresa input")
+  
  
+def escritura()
+  list=input("Escriba")
+  list.split(" ")
+  
