@@ -11,3 +11,4 @@ def escritura()
   list=input("Escriba")
   list.split(" ")
   
+  
