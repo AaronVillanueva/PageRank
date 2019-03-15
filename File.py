@@ -2,30 +2,35 @@ print("Bienvenido al programa de PageRank v.0001")
 
 estado = "activo"
 
-def inicio(str):
+def inicio(str,num):
     lista,numNodos=crear(str)
     listaF=procesar(lista,numNodos)
-    calcular(listaF)
+    listaLista = calcular(listaF)
+    for i in range(1,int(num)):
+        listaLista=calcular(listaLista)
+    formatoFinal(listaLista)
+    print(" ")
+    input("Calculo terminado. Introduzca cualquier cosa para continuar")
+    print(" ")
+
+def formatoFinal(lista):
+    for i in range(1,len(lista)):
+        print(str(i)+"   "+str(lista[i][0]))
 
 def calcular(lista):
-    listaA=list(lista[:]).copy()
-    #for i in range(1,len(lista)):
-    for i in range(1, 3):
-        print("   ")
+    #Deepcopy muy importante!
+    listaA=[x[:] for x in lista]
+    for i in range(1,len(lista)):
+    #for i in range(1, 3):
         suma = 0
         actual=listaA[i][2]
         for j in actual:
-            print(j)
             div = len(listaA[j][1])
             if (div == 0):
                 div = 1
-            print(listaA[j][0])
             suma+=listaA[j][0]/div
-            print(suma)
-        #lista[i][0]=suma
-    print(" ")
-    print(lista[1])
-    print(lista)
+        lista[i][0]=suma
+    return(lista)
 
 def procesar(lista,numNodos):
     #ListaF  [ r Actual, outlink, inlink   ]
@@ -57,7 +62,10 @@ def crear(str):
 def escritura():
     print("Introduzca el grafo")
     str = input()
-    inicio(str)
+    print("Introduzca el numero de repeticiones")
+    num=input()
+    inicio(str,num)
+    #inicio("(1,2) (1,3) (3,1) (3,2) (3,5) (5,4) (5,6) (6,4) (4,5) (4,6)")
 
 def subir():
 
@@ -71,10 +79,10 @@ while estado=="activo":
     if eleccion==1:
         print("a")
     if eleccion==2:
-        #escritura()
-        inicio("(1,2) (1,3) (3,1) (3,2) (3,5) (5,4) (5,6) (6,4) (4,5) (4,6)")
-        break
+        escritura()
     else:
         print("Finalizando programa")
         estado="salir"
+
+
   
