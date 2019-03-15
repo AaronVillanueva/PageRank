@@ -1,7 +1,9 @@
+
+import tkinter as tk
+from tkinter import filedialog
+
 print("Bienvenido al programa de PageRank v.0001")
-
 estado = "activo"
-
 def inicio(str,num):
     lista,numNodos=crear(str)
     listaF=procesar(lista,numNodos)
@@ -68,21 +70,23 @@ def escritura():
     #inicio("(1,2) (1,3) (3,1) (3,2) (3,5) (5,4) (5,6) (6,4) (4,5) (4,6)")
 
 def subir():
+    ventana=tk.Tk()
 
-    inicio(list)
+    path=filedialog.askopenfilename()
+    ventana.withdraw()
+    archivo=open(path,"r")
+    string=str(archivo.read())
+    num=input("Introduzca el numero de repeticiones")
+    inicio(string,int(num))
 
 while estado=="activo":
     print("1 para subir")
     print("2 para escribir")
-    #eleccion=int(input())
-    eleccion=2
+    eleccion=int(input())
     if eleccion==1:
-        print("a")
+        subir()
     if eleccion==2:
         escritura()
     else:
         print("Finalizando programa")
         estado="salir"
-
-
-  
